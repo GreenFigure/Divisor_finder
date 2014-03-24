@@ -22,10 +22,10 @@ int main(int argc, const char* argv[]) {
         max_index=0; //variables for the arrays and to set sizes
 /*-------------------------------------------------------*/
 printf("argc %d \n argv[argc] %s \n", argc-1, argv[argc-1]);
-        if (strcmp((argv[1]),"-h")==0){
+    if (strcmp((argv[1]),"-h")==0){
             printf("Enter the the max size of numbers you are going to enter and the max value of a number. Etc: main.exe 50 1500");
             printf("\n\n");
-        }
+    } else {
         if ((argc >= 2)&&(atoi(argv[1])>0)){   ///max total_numbers value
              max = atoi(argv[1]);
         } else {
@@ -66,7 +66,7 @@ printf("argc %d \n argv[argc] %s \n", argc-1, argv[argc-1]);
         div_num=(int*)realloc(div_num,0); // free divisor array memory
 
 
-
+}
     return 0;
 }
 
