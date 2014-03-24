@@ -20,15 +20,18 @@ int main(int argc, const char* argv[]) {
         max_size=0,
         total,
         max_index=0; //variables for the arrays and to set sizes
+        int i;
 /*-------------------------------------------------------*/
-printf("argc %d \n argv[argc] %s \n", argc-1, argv[argc-1]);
-    if (strcmp((argv[1]),"-h")==0){
-            printf("Enter the the max size of numbers you are going to enter and the max value of a number. Etc: main.exe 50 1500");
-            printf("\n\n");
+if (argc==1) {   //dodge <null> compare to string fault
+        argv[1]="";
+        }
+
+if (strcmp("-h",argv[1])==0){
+            printf("\n>Enter the the max size of numbers you are going to enter and the \nmax value of a number. \n\nEtc: main.exe 50 1500\n\n");
     } else {
         if ((argc >= 2)&&(atoi(argv[1])>0)){   ///max total_numbers value
              max = atoi(argv[1]);
-        } else {
+       } else {
              max=size1;
         }
 
@@ -39,10 +42,8 @@ printf("argc %d \n argv[argc] %s \n", argc-1, argv[argc-1]);
             max_fixed_size = size;
         }
 
-        printf("Max %d\n",max);
         printf(">In this simple divisor finding program you are allowed to enter numbers only.\n");
-        printf(">The numbers are required to be [1..infinity].\n");
-        printf("\n");
+        printf(">The numbers are required to be [1..infinity].\n\n");
         printf("Press Any Key to Continue\n");
         getch();
         system("cls");
@@ -58,7 +59,7 @@ printf("argc %d \n argv[argc] %s \n", argc-1, argv[argc-1]);
 
         Find_Maxindexsize(total_numbers, &max_size, &max_index, div_num, numbers);
 
-        //print(numbers, div_num, total_numbers);
+        print(numbers, div_num, total_numbers);
 
         Print_result(numbers, div_num, max_index);
 
@@ -66,7 +67,7 @@ printf("argc %d \n argv[argc] %s \n", argc-1, argv[argc-1]);
         div_num=(int*)realloc(div_num,0); // free divisor array memory
 
 
-}
+    }
     return 0;
 }
 
