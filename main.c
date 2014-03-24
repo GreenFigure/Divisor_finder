@@ -149,8 +149,9 @@ void Find_Maxindexsize(int total_numbers, int* max_size, int* max_index, int* di
 // ----- PRINT ----
 void print(int *numbers, int* div_num, int total_numbers){
 int i;
+printf("You've entered");
 for (i=0;i<total_numbers;i++){
-    printf("Number %d has %d divisors counted\n",numbers[i], div_num[i]);
+    printf(" %d\n",numbers[i]);
 }
 }
 void Print_result(int* numbers, int* div_num, int max_index){
