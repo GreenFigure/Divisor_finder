@@ -2,7 +2,7 @@
 // Darba atliko Norbert Zardin 1311008 VU MIF INFO 2 grupe
 // 2013/2014 m. antrasis (pavasario) semestras
 
-// This program counts the divisors of all the numbers you enter, finds the number with the most divisors and prints it.
+// This program counts the divisors of all the numbers you enter, finds the number with the most divisors and prints it and its divisors.
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>  // getch();
