@@ -30,20 +30,22 @@ int main(int argc, const char* argv[]) {
         done=0,                  // we use this to identify if we have done some of the previouse steps
         delarr=0;                // delarr - delete array, used to know if we need to delete arrays
 
+
+system("cls"); // clear console text before we start it
+
 /*----------------------- Parameter part ---------------------------*/
 if (argc==1) {   //dodge <null> compare to string fault
         argv[1] = "";
         }
-
 if (strcmp("-h", argv[1]) == 0){
-            printf("\n>Enter the the max size of numbers you are going to enter and the \nmax value of a number. \n\nEtc: main.exe 50 1500\n\n");
+            printf("\n>Enter the the max size of numbers you are going to enter and the \nmax value of a number. \n\nEtc: main.exe 50 1500\n\n\n");
     } else {
         if ((argc >= 2) && (atoi(argv[1]) > 0)){   ///max total_numbers value
              max = atoi(argv[1]);
        } else {
              max = size1;
                 if (argc >= 2) {  //to check if we have entered parameters and they were wrong
-                    printf(">> The array size parameter you have entered is invalid. Proceeding with default settings.\n");
+                    printf(">> The array size parameter you have entered is invalid.\n Proceeding with default settings.\n\n\n");
                 }
             }
 
@@ -53,7 +55,7 @@ if (strcmp("-h", argv[1]) == 0){
         } else {
             max_fixed_size = size;
                 if (argc >= 2) {   //to check if we have entered parameters and they were wrong
-                    printf(">> The max integer value parameter you have entered is invalid. Proceeding with default settings.\n");
+                    printf(">> The max integer value parameter you have entered is invalid.\n Proceeding with default settings.\n\n\n");
                 }
         }
 
