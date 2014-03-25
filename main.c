@@ -32,29 +32,35 @@ int main(int argc, const char* argv[]) {
 
 /*----------------------- Parameter part ---------------------------*/
 if (argc==1) {   //dodge <null> compare to string fault
-        argv[1]="";
+        argv[1] = "";
         }
 
-if (strcmp("-h",argv[1])==0){
+if (strcmp("-h", argv[1]) == 0){
             printf("\n>Enter the the max size of numbers you are going to enter and the \nmax value of a number. \n\nEtc: main.exe 50 1500\n\n");
     } else {
-        if ((argc >= 2)&&(atoi(argv[1])>0)){   ///max total_numbers value
+        if ((argc >= 2) && (atoi(argv[1]) > 0)){   ///max total_numbers value
              max = atoi(argv[1]);
        } else {
-             max=size1;
-        }
+             max = size1;
+                if (argc >= 2) {  //to check if we have entered parameters and they were wrong
+                    printf(">> The array size parameter you have entered is invalid. Proceeding with default settings.\n");
+                }
+            }
 
 
-        if ((argc >= 3)&&(atoi(argv[2])>2)){ /// max value of a number
+        if ((argc >= 3) && (atoi(argv[2]) > 2)){ /// max value of a number
             max_fixed_size = atoi(argv[2]);
         } else {
             max_fixed_size = size;
+                if (argc >= 2) {   //to check if we have entered parameters and they were wrong
+                    printf(">> The max integer value parameter you have entered is invalid. Proceeding with default settings.\n");
+                }
         }
 
 /*------------------------- End of params -----------------*/
         printf("> In this simple divisor finding program you are allowed to enter numbers only.\n");
-        printf("> With current settings you can enter up to %d numbers.\n",max);
-        printf("> The numbers are required to be [1..%d].\n",max_fixed_size);
+        printf("> With current settings you can enter up to %d numbers.\n", max);
+        printf("> The numbers are required to be [1..%d].\n", max_fixed_size);
         printf("> In order to successfully complete the calculations you need to enter data!\n\n");
         printf("Press Any Key to Continue\n");
         getch();
@@ -71,11 +77,11 @@ if (strcmp("-h",argv[1])==0){
 		    done=1;
 			break;
 		}
-		case 2 :{ //Enter numbers
-		    if(done>=1){
+		case 2 : { //Enter numbers
+		    if(done >= 1){
                 system("cls");
                 Get_Numbers(numbers, total_numbers, max_fixed_size);
-                done=2;
+                done = 2;
 		    } else {
                 printf("> You have to enter the amount of numbers first!\n\n");
                 printf("> Press Any Key to enter the Data\n");
@@ -86,8 +92,8 @@ if (strcmp("-h",argv[1])==0){
                 Create_arrays(&numbers, &div_num, total_numbers);
 
                 Get_Numbers(numbers, total_numbers, max_fixed_size);
-                done=2;
-                delarr=1;
+                done = 2;
+                delarr = 1;
 		    }
 			break;
 		}
@@ -112,7 +118,7 @@ if (strcmp("-h",argv[1])==0){
 
                 system("cls");
                 printf("> Calculations are done!\n");
-                done=4;
+                done = 4;
 
 		     } else {
 
@@ -127,8 +133,8 @@ if (strcmp("-h",argv[1])==0){
 		case 5 : { // Print result
 		    if(done >= 4){
               system("cls");
-              print(numbers, div_num, total_numbers);//prints numbers
-              Print_result(numbers, div_num, max_index);//prints results
+              print(numbers, div_num, total_numbers);     //prints numbers
+              Print_result(numbers, div_num, max_index);  //prints results
 
 		    } else {
 		    printf("> You have to enter the data first and calculate it!\n\n");
@@ -161,9 +167,9 @@ if (strcmp("-h",argv[1])==0){
 			break;
 		}
 		case 0 : {
-                if(delarr==1){
-                    numbers=(int*)realloc(numbers,0); //free number array memory
-                    div_num=(int*)realloc(div_num,0); // free divisor array memory
+                if(delarr == 1){
+                    numbers = (int*)realloc(numbers, 0); //free number array memory
+                    div_num = (int*)realloc(div_num, 0); // free divisor array memory
                 }
                 system("cls");
 		        printf ("> You've successfully quit the program.\n\n\n\n\n\n");
@@ -191,7 +197,7 @@ int GetChoice () {
 		printf("> 0) Exit.\n\n\n");
 		printf("> Selection number: ");
 
-          if ( (scanf("%1d", &pick)==1) && (getchar() == '\n')){
+          if ( (scanf("%1d", &pick) == 1) && (getchar() == '\n')){
 				if ( (pick >= 0 ) && ( pick <= PICK_SIZE ) ){  // if the number is valid, it is accepted
 			    break;
 				}
@@ -213,20 +219,20 @@ int GetChoice () {
 
 // Get size functoin
 void Get_Size(int* total_numbers, int max){
-    int error=1; // used to repeat the cycle while something was wrong
-    printf("max %d\n",max);
+    int error = 1; // used to repeat the cycle while something was wrong
+    printf("max %d\n", max);
     system("cls");
 printf(">How many numbers are you going to enter?\n");
-while(error==1){
-    if((scanf("%d",total_numbers)==1)&&
-       (*total_numbers>0)&&
-       (*total_numbers<=max)&&
-       (getchar()=='\n')){ //protection from entering symbols, letters and numbers below 1
+while(error == 1){
+    if((scanf("%d",total_numbers)== 1) &&
+       (*total_numbers > 0) &&
+       (*total_numbers <= max) &&
+       (getchar() == '\n')){ //protection from entering symbols, letters and numbers below 1
         system("cls");
-        error=0;
+        error = 0;
         } else {
             printf(">ERROR# Bad input, try again. \n>You cannot input numbers that are below 1 and characters\n");
-            while (getchar()!='\n');
+            while (getchar() != '\n');
         }
 }//while.end
 }//get_size.end
@@ -236,26 +242,26 @@ while(error==1){
 void Create_arrays(int* *numbers,
                    int* *div_num,
                    int total_numbers){
-*numbers=(int*)malloc(total_numbers*sizeof(int));
-*div_num=(int*)malloc(total_numbers*sizeof(int));
+*numbers = (int*)malloc(total_numbers*sizeof(int));
+*div_num = (int*)malloc(total_numbers*sizeof(int));
 }
 void Get_Numbers(int* numbers, int total_numbers, int max_fixed_size){
-    int error=1, // used to repeat the cycle while something was wrong
+    int error = 1, // used to repeat the cycle while something was wrong
         i;
-		while(error==1){
-                    for(i=0; i<total_numbers; i++){
-                            printf("Enter your %d number\n",i+1);
-                            if((scanf("%d",&numbers[i])==1)&&
-                               (numbers[i]>1)&&
-                               (numbers[i]<=max_fixed_size)&&
-                               (getchar()=='\n')) {// protection from entering symbols and letters
-                                error=0;
+		while(error == 1){
+                    for(i = 0; i < total_numbers; i++){
+                            printf("Enter your %d number\n", i+1);
+                            if((scanf("%d",&numbers[i]) == 1) &&
+                               (numbers[i] > 1) &&
+                               (numbers[i] <= max_fixed_size) &&
+                               (getchar() == '\n')) {// protection from entering symbols and letters
+                                error = 0;
 
                             system("cls");
                             } else {
                                 printf(">ERROR_2# Bad input, try again. \n>You cannot input numbers that are below 1 and characters\n");
                                 i--;
-                                while (getchar()!='\n');
+                                while (getchar() != '\n');
                                 }
 
 
@@ -265,24 +271,24 @@ void Get_Numbers(int* numbers, int total_numbers, int max_fixed_size){
 // ---- Divisor count  ----
 void Count_divisors(int* numbers, int* div_num, int total_numbers){
     int n, i, total; // n,i - for cycles, total -  to identify how many divisors do we have in total for that number
-    for (i=0; i<total_numbers;i++){
-    total=0;
-    for(n=1; n<=numbers[i]/2; n++){ //dalikliai nuo 1 iki pat skacius/2, kadangi daliklis mazesnis uz pati skaiciu yra nedidesnis uz to skaiciaus puse
-        if(numbers[i]%n==0){
+    for (i = 0; i<total_numbers;i++){
+    total = 0;
+    for(n = 1; n <= numbers[i] / 2; n++){ //dalikliai nuo 1 iki pat skacius/2, kadangi daliklis mazesnis uz pati skaiciu yra nedidesnis uz to skaiciaus puse
+        if(numbers[i] % n == 0){
             total++;
         }
        // printf("total %d",total);
-    div_num[i]=total+1; //simetriskam skaiciu masyvui, dalikliu masyvui priskiriam daliklius - kiek 'i' langelyje skaicius turi dalikliu
+    div_num[i] = total+1; //simetriskam skaiciu masyvui, dalikliu masyvui priskiriam daliklius - kiek 'i' langelyje skaicius turi dalikliu
     }}
 }
 // ---- Max size and index ----
 void Find_Maxindexsize(int total_numbers, int* max_size, int* max_index, int* div_num, int* numbers){
     int i; // used in cycle
 
-    for(i=0; i<total_numbers; i++){ // searching for the most divisors
-        if(div_num[i]>= *max_size){
-        *max_size=div_num[i];
-        *max_index=i;
+    for(i = 0; i < total_numbers; i++){ // searching for the most divisors
+        if(div_num[i] >= *max_size){
+        *max_size = div_num[i];
+        *max_index = i;
         }
             }
 
@@ -292,18 +298,18 @@ void Find_Maxindexsize(int total_numbers, int* max_size, int* max_index, int* di
 void print(int *numbers, int* div_num, int total_numbers){
 int i; // used in cycle
 printf("> You've entered:\n");
-for (i=0;i<total_numbers;i++){
-    printf(" %d\n",numbers[i]);
+for (i = 0; i<total_numbers; i++){
+    printf(" %d\n", numbers[i]);
 }
 }
 void Print_result(int* numbers, int* div_num, int max_index){
     int n; // used in cycle
-        printf(">Number with the most divisors: %d\n>This number has %d divisors\n",numbers[max_index],div_num[max_index]);
+        printf(">Number with the most divisors: %d\n>This number has %d divisors\n", numbers[max_index], div_num[max_index]);
         printf("----------\n|Divisors|\n----------\n");
-        printf(" %d\n",numbers[max_index]);
-        for(n=numbers[max_index]/2;n>0; n--){
-            if(numbers[max_index]%n==0){
-            printf(" %d\n",n);
+        printf(" %d\n", numbers[max_index]);
+        for(n = numbers[max_index] / 2; n > 0; n--){
+            if(numbers[max_index] % n == 0){
+            printf(" %d\n", n);
             }
         }
 }
