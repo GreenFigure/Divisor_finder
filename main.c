@@ -177,7 +177,7 @@ if (strcmp("-h",argv[1])==0){
 //Choice function
 int GetChoice () {
 
-	int pick = 0;	// array size
+	int pick = 0;	// our selection
 	while (1) {
 		system ("cls");
 		printf("> What are you going to do?\n");
